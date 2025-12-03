@@ -1,32 +1,36 @@
+"use client"
 
-import Image from "next/image";
-// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Navitems from "@/components/Navitems";
 import Link from "next/link";
-
-import React from 'react'
+import Image from "next/image";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Navitems from "./Navitems";
 
 const Navbar = () => {
-  return (
-    <nav className='navbar'>
-        <Link href="/">
+    return (
+        <nav className="navbar">
+            <Link href="/">
                 <div className="flex items-center gap-2.5 cursor-pointer">
                     <Image
-                        src="/images/chatsphere_logo.svg"
+                        src="/images/logo.svg"
                         alt="logo"
-                        width={72}
-                        height={80}
+                        width={46}
+                        height={44}
                     />
                 </div>
             </Link>
-            <div className="flex items-center gap-8 h-">
+            <div className="flex items-center gap-8">
                 <Navitems />
-                <p>Sign In</p>
-
-
+                <SignedOut>
+                    <SignInButton>
+                        <button className="btn-signin">Sign In</button>
+                    </SignInButton>
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
             </div>
-    </nav>
-  )
+        </nav>
+    )
 }
 
 export default Navbar
