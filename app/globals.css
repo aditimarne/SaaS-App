@@ -131,7 +131,7 @@ body {
     @apply bg-background text-foreground;
   }
   main {
-    @apply mx-auto px-14 flex flex-col gap-8 bg-background h-full max-w-[1400px] pt-10 max-sm:px-2;
+    @apply mx-auto px-14 flex flex-col gap-8 bg-background h-full max-w-[1400px] pt-7 max-sm:px-2;
   }
   h1 {
     @apply text-3xl font-bold;
@@ -152,8 +152,16 @@ body {
     @apply bg-black text-white rounded-4xl text-sm px-2 py-1 capitalize;
   }
   .companion-bookmark {
-    @apply px-2 bg-black rounded-4xl flex items-center h-full aspect-square cursor-pointer;
+    @apply px-2 bg-black rounded-4xl flex items-center h-full aspect-square  cursor-pointer;
   }
+  .companion-bookmark--loading {
+  /* keep same box size but make background slightly transparent during save if you want */
+  @apply bg-black/90;
+}
+
+.companion-bookmark--booked {
+  @apply bg-black; /* keep same bg for booked; icon will change to filled-white */
+}
   .input {
     @apply !border-black !bg-white focus-visible:!ring-0 focus-visible:!border-black !w-full;
   }
@@ -170,7 +178,7 @@ body {
     @apply bg-primary text-white rounded-xl cursor-pointer px-4 py-2 flex items-center gap-2;
   }
   .navbar {
-    @apply flex items-center justify-between mx-auto w-full px-14 py-4 bg-white max-sm:px-4;
+    @apply flex items-center justify-between mx-auto w-full px-14 py-6 bg-white max-sm:px-3;
   }
   .btn-signin {
     @apply border border-black rounded-4xl px-4 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer;
@@ -204,15 +212,18 @@ body {
     @apply border-2 border-black rounded-lg flex flex-col gap-2 items-center py-8 max-sm:py-2 cursor-pointer w-full;
   }
 
-  .transcript {
-    @apply relative flex flex-col gap-4 w-full items-center pt-10 flex-grow overflow-hidden;
-  }
-  .transcript-message {
-    @apply overflow-y-auto w-full flex flex-col gap-4 max-sm:gap-2 pr-2 h-full text-2xl;
-  }
-  .transcript-fade {
-    @apply pointer-events-none absolute bottom-0 left-0 right-0 h-40 max-sm:h-20 bg-gradient-to-t from-background via-background/90 to-transparent z-10;
-  }
+ .transcript {
+  @apply relative w-full pt-6;
+}
+
+.transcript-message {
+  @apply w-full max-h-40 overflow-y-auto flex flex-col gap-2 max-sm:gap-1 pr-2 text-base;
+}
+
+.transcript-fade {
+  @apply pointer-events-none absolute inset-x-0 bottom-0 h-10 max-sm:h-8 bg-gradient-to-t from-background/80 to-transparent z-10;
+}
+
 }
 
 @layer utilities {

@@ -11,14 +11,14 @@ const Navbar = () => {
             <Link href="/">
                 <div className="flex items-center gap-2.5 cursor-pointer">
                     <Image
-                        src="/images/logo.svg"
+                        src="/images/chatsphere_logo.svg"
                         alt="logo"
-                        width={46}
-                        height={44}
+                        width={78}
+                        height={60}
                     />
                 </div>
             </Link>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-6 w-">
                 <Navitems />
                 <SignedOut>
                     <SignInButton>

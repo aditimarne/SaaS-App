@@ -10,8 +10,14 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Converso",
+  title: "Chatshere",
   description: "Real-time AI Teaching Platform",
+  icons: {
+    icon: "/images/chatsphere_logo.svg",
+    shortcut: "/chatsphere_logo.svg",
+    apple: "/chatsphere_logo.svg",
+  },
+
 };
 
 export default function RootLayout({
