@@ -155,12 +155,11 @@ body {
     @apply px-2 bg-black rounded-4xl flex items-center h-full aspect-square  cursor-pointer;
   }
   .companion-bookmark--loading {
-  /* keep same box size but make background slightly transparent during save if you want */
   @apply bg-black/90;
 }
 
 .companion-bookmark--booked {
-  @apply bg-black; /* keep same bg for booked; icon will change to filled-white */
+  @apply bg-black;
 }
   .input {
     @apply !border-black !bg-white focus-visible:!ring-0 focus-visible:!border-black !w-full;

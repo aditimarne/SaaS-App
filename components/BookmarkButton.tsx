@@ -44,7 +44,7 @@ export default function BookmarkButton({
       className={`companion-bookmark ${loading ? "companion-bookmark--loading" : ok ? "companion-bookmark--booked" : ""}`}
     >
       {loading ? (
-        // small inline SVG spinner (keeps size identical)
+
         <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden>
           <circle cx="12" cy="12" r="10" stroke="white" strokeOpacity="0.25" strokeWidth="3"></circle>
           <path d="M22 12a10 10 0 0 1-10 10" stroke="white" strokeWidth="3" strokeLinecap="round"></path>

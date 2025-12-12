@@ -1,4 +1,3 @@
-// app/api/bookmark/route.ts
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { createSupabaseClient } from "@/lib/supabase";
@@ -15,7 +14,6 @@ export async function POST(req: Request) {
 
     if (!companionId) return NextResponse.json({ error: "companionId required" }, { status: 400 });
 
-    // upsert to avoid duplicates (requires unique index on user_id+companion_id)
     const { error } = await supabase
       .from("bookmarks")
       .upsert({ user_id: userId, companion_id: companionId }, { onConflict: "user_id,companion_id" });
@@ -25,7 +23,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // revalidate the server page that displays bookmarks (adjust path if necessary)
     if (path) revalidatePath(path);
 
     return NextResponse.json({ ok: true });

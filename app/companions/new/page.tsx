@@ -4,7 +4,7 @@ import {newCompanionPermissions} from "@/lib/actions/companion.actions";
 import CompanionsForm from "@/components/CompanionsForm";
 import Image from "next/image";
 import Link from "next/link";
-// import Subcription from "@/app/subcription/page";
+import Subcription from "@/app/subcription/page";
 
 const NewCompanion = async () => {
     const { userId } = await auth();

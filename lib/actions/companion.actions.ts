@@ -21,7 +21,10 @@ export const createCompanion = async (formData: CreateCompanion) => {
 export const getAllCompanions = async ({ limit = 10, page = 1, subject, topic }: GetAllCompanions) => {
     const supabase = createSupabaseClient();
 
-    let query = supabase.from('companions').select();
+      let query = supabase
+      .from('companions')
+      .select()
+      .order('created_at', { ascending: false }); 
 
     if(subject && topic) {
         query = query.ilike('subject', `%${subject}%`)
@@ -110,11 +113,13 @@ export const getUserCompanions = async (userId: string) => {
 export const newCompanionPermissions = async () => {
   const { userId, has } = await auth();
   const supabase = createSupabaseClient();
+  console.log("newCompanionPermissions: userId=", userId);
+    console.log("newCompanionPermissions: has()", typeof has, has ? Object.keys(has) : has);
 
-  // default free tier: 3 companions
+  
   let limit = 3;
 
-  if (has({ plan: "pro" })) {
+  if (has({ plan: "pro_learner" })) {
     return true; // unlimited
   } else if (has({ feature: "10_companion_limit" })) {
     limit = 10;
@@ -135,7 +140,7 @@ export const newCompanionPermissions = async () => {
 };
 
 
-// Bookmarks
+
 export const addBookmark = async (companionId: string, path: string) => {
   const { userId } = await auth();
   if (!userId) return;
@@ -147,7 +152,6 @@ export const addBookmark = async (companionId: string, path: string) => {
   if (error) {
     throw new Error(error.message);
   }
-  // Revalidate the path to force a re-render of the page
 
   revalidatePath(path);
   return data;
@@ -169,7 +173,6 @@ export const removeBookmark = async (companionId: string, path: string) => {
   return data;
 };
 
-// It's almost the same as getUserCompanions, but it's for the bookmarked companions
 export const getBookmarkedCompanions = async (userId: string) => {
   const supabase = createSupabaseClient();
   const { data, error } = await supabase
@@ -179,7 +182,7 @@ export const getBookmarkedCompanions = async (userId: string) => {
 
   if (error) {
     console.error("Error loading bookmarks:", error);
-    return []; // don't crash the profile page
+    return []; 
   }
 
   const rows = data ?? [];
